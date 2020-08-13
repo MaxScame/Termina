@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        
+        .input-group, .main-content {
+            min-width: 400px !important;
+            width: 100%;
+            padding: 10px 0 0 10px;
+        }
+        .command-b, .title-name {
+            margin-left: 4px;
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #333333;
+        }
+        .title-name {
+            width: 20%;
+            text-align: center;
+            margin: 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p, h3, form { 
+            font-family: 'Fira Code', monospace;
+        }
+        body {
+            background-color: #353535;
+        }
+        code {
+            color: wheat !important;
+        }
+        ::-moz-focus-inner {border:0;}
+        :active, :hover, :focus {
+            outline: 0 !important;
+            outline-offset: 0;
+            box-shadow: none !important;
+        }
+        ::selection {
+            border-radius: 4px;
+            background: dimgray;
+        }
+    </style>
+
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+</head>
+<body class="bg-dark">
+
+    <div class="main-content">
+        <h3 class="title-name" style="color: darkgreen"><u>Termina</u><sub><a href="https://github.com/MaxScame/Termina" style="color: green; text-decoration-style: dotted;">🌶️</a></sub></h3>
+        <p class="text-success"><b>Command:</b><code class="command-b">{{ command | safe }}</code></p>
+        <p class="text-success"><b>Terminal:</b><br><code>{{ response | safe }}</code></p>
+    </div>
+
+    <div class="fixed-bottom">
+        <div class="input-group input-group-sm mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-dark text-success border-0" id="inputGroup-sizing-sm">&gt;</span>
+            </div>
+            <form name="command_form" class="form-inline command-form">
+                <div class="form-row">
+                    <div class="form-group col-sm-9">
+                        <input autofocus spellcheck="false" type="text" class="form-control form-control-sm bg-dark text-success border-0" autocomplete="off" aria-label="Command" name="command">
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <input type="submit" value="Run" formaction="run" formmethod="post" class="btn btn-dark btn-sm text-success">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
