@@ -11,9 +11,12 @@ app = Flask(__name__, template_folder='templates')
 
 
 def sys_info():
+    """
+    Checking the platform on which the script is running and setting up for it.
+    """
     if platform.system() == "Windows":
         print('Windows')
-        os.system('chcp 1252') # Windows the best!1!!
+        os.system('chcp 1252') # Damn, Windows!
     elif platform.system() == "Linux":
         print('Linux')
     elif platform.system() == "Darwin":
@@ -21,10 +24,9 @@ def sys_info():
     else:
         print('Unknown OS')
 
-def html_encode(s):
+def cooking(s):
     """
-    Returns the ASCII decoded version of the given HTML string. This does
-    NOT remove normal HTML tags like <p>.
+    Returns the HTML encoded version of the given ASCII string.
     """
     htmlCodes = (
             ('&', '&amp;'),
@@ -51,15 +53,15 @@ def home():
 def run_command():
     error = None
     command = str(request.form['command'])
-    response = html_encode(os.popen(command).read())
+    response = cooking(os.popen(command).read())
     print(response)
     if request.method == 'POST':
         return render_template('index.html',
-        command=html_encode(command),
+        command=cooking(command),
         response=response)
     return response
 
 if __name__ == "__main__":
     sys_info()
-    app.debug = True
+    app.debug = True # Disable it for normal using!
     app.run()
