@@ -10,7 +10,7 @@ from flask import abort, redirect, url_for
 app = Flask(__name__, template_folder='templates')
 
 
-def sys_info():
+def sys_setup():
     """
     Checking the platform on which the script is running and setting up for it.
     """
@@ -53,15 +53,14 @@ def home():
 def run_command():
     error = None
     command = str(request.form['command'])
-    response = cooking(os.popen(command).read())
-    print(response)
+    response = os.popen(command).read()
     if request.method == 'POST':
         return render_template('index.html',
-        command=cooking(command),
-        response=response)
+                                command=cooking(command),
+                                response=cooking(response))
     return response
 
 if __name__ == "__main__":
-    sys_info()
+    sys_setup()
     app.debug = True # Disable it for normal using!
     app.run()
